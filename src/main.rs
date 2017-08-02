@@ -4,18 +4,15 @@ mod list;
 mod dice;
 
 use rand::OsRng;
-use rand::Rng;
 
 
 fn main() {
     let mut rng = OsRng::new().unwrap();
-    let word_list = list::parse_list(list::EN_LIST);
-    println!("Hello, world!");
-    println!("Random number: {}", rng.next_u32());
-    println!("Diceware-PW: {}", build_diceware_password(&mut rng, 5, list));
+    let word_list: Vec<&str> = list::parse_list(list::EN_LIST);
+    println!("{}", build_diceware_password(&mut rng, 5, &word_list));
 }
 
-fn build_diceware_password(rng : &mut OsRng, n: u8, list: Vec<&str>) -> String {
+fn build_diceware_password(rng : &mut OsRng, n: u8, list: &Vec<&str>) -> String {
     let mut v: Vec<usize> = Vec::new();
 
     for _ in 0..n {
@@ -25,7 +22,6 @@ fn build_diceware_password(rng : &mut OsRng, n: u8, list: Vec<&str>) -> String {
     let mut x: String = "".to_string();
 
     for (i, item) in v.iter().enumerate() {
-        println!("i=={}",i);
         if i > 0usize {
             x = x + "*";
         }

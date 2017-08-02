@@ -2,7 +2,7 @@ use rand::OsRng;
 use rand::Rng;
 
 pub fn roll_four_dice(rng : &mut OsRng) -> [u8; 4] {
-    return [(rng.next_u32() % 6 + 1) as u8, (rng.next_u32() % 6 + 1) as u8, (rng.next_u32() % 6 + 1) as u8, (rng.next_u32() % 6 + 1) as u8];
+    return [(rng.next_u32() % 6) as u8, (rng.next_u32() % 6) as u8, (rng.next_u32() % 6) as u8, (rng.next_u32() % 6) as u8];
 }
 
 pub fn from_array_to_index(arr: [u8;4]) -> usize {
@@ -16,10 +16,10 @@ pub fn from_array_to_index(arr: [u8;4]) -> usize {
 pub fn pow(x: usize, y: usize) -> usize {
     let mut r = 1u32;
     for _ in 0..y {
-        println!("building r = {}", r);
+        //println!("building r = {}", r);
         r = r * (x as u32);
     }
-    println!("x={} ^ y={} == r={}", x, y, r);
+    //println!("x={} ^ y={} == r={}", x, y, r);
     return r as usize;
 }
 
@@ -33,56 +33,51 @@ mod test {
     #[test]
     fn index_from_array_1_test() {
         let x = dice::from_array_to_index([1, 1, 1, 1]);
-        assert_eq!(x, 1296);
+        assert_eq!(x, 259);
     }
 
     #[test]
     fn index_from_array_2_test() {
         let x = dice::from_array_to_index([1, 2, 3, 4]);
-        assert_eq!(x, 1296);
+        assert_eq!(x, 310);
     }
 
 
 
     #[test]
     fn index_from_array_3_test() {
-        let x = dice::from_array_to_index([6, 6, 6, 6]);
-        assert_eq!(x, 1296);
+        let x = dice::from_array_to_index([5, 5, 5, 5]);
+        assert_eq!(x, 1295);
     }
 
 
     #[test]
     fn pow_test1() {
         let x = dice::pow(2, 9);
-        println!("{}", x);
         assert_eq!(x, 512);
     }
 
     #[test]
     fn pow_test2() {
         let x = dice::pow(6, 3);
-        println!("{}", x);
         assert_eq!(x, 216);
     }
 
     #[test]
     fn pow_test3() {
         let x = dice::pow(6, 2);
-        println!("{}", x);
         assert_eq!(x, 36);
     }
 
     #[test]
     fn pow_test4() {
         let x = dice::pow(6, 1);
-        println!("{}", x);
         assert_eq!(x, 6);
     }
 
     #[test]
     fn pow_test5() {
         let x = dice::pow(6, 0);
-        println!("{}", x);
         assert_eq!(x, 1);
     }
 
