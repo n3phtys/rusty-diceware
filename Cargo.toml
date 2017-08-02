@@ -2,14 +2,7 @@
 authors = ["nephtys <christopher.kaag@gmail.com>"]
 name = "dice-me"
 version = "0.1.0"
-[dependencies]
-clap = "2.26.0"
-rand = "0.3.16"
 
-
-
-
-[package]
 # ...
 
 # A short blurb about the package. This is not rendered in any format when
@@ -27,3 +20,9 @@ repository = "https://github.com/n3phtys/rusty-diceware"
 # license identifiers from http://spdx.org/licenses/. Multiple licenses can be
 # separated with a `/`.
 license = "MIT"
+
+
+
+[dependencies]
+clap = "2.26.0"
+rand = "0.3.16"
